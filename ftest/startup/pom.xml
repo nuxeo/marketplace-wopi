@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.nuxeo.marketplace.wopi</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-I20180919_0446</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 

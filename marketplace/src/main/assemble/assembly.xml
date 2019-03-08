@@ -70,19 +70,11 @@
       <patternset refid="wopi.versus.server" />
     </unzip>
 
-    <!-- Add Web UI bundles -->
-    <copy todir="${outdir}/marketplace/install/bundles-web-ui">
-      <artifact:resolveFile key="org.nuxeo.ecm:nuxeo-wopi-web-ui" />
-    </copy>
-
     <!-- Generate install.xml content -->
     <var name="install.bundles" value="" />
     <var name="install.bundles"
          value="${line.separator}
   &lt;update file=&quot;${package.root}/install/bundles&quot; todir=&quot;${env.bundles}&quot; /&gt;" />
-    <var name="install.bundles"
-         value="${install.bundles}${line.separator}
-  &lt;update file=&quot;${package.root}/install/bundles-web-ui&quot; todir=&quot;${env.bundles}&quot; if=&quot;Packages.contains('nuxeo-web-ui')&quot; /&gt;" />
 
     <var name="install.libs" value="" />
     <if>
@@ -91,14 +83,6 @@
         <var name="install.libs"
              value="${line.separator}
   &lt;update file=&quot;${package.root}/install/lib&quot; todir=&quot;${env.lib}&quot; /&gt;" />
-      </then>
-    </if>
-    <if>
-      <available file="${outdir}/marketplace/install/lib-web-ui" />
-      <then>
-        <var name="install.libs"
-             value="${install.libs}${line.separator}
-          &lt;update file=&quot;${package.root}/install/lib-web-ui&quot; todir=&quot;${env.lib}&quot; if=&quot;Packages.contains('nuxeo-web-ui')&quot; /&gt;" />
       </then>
     </if>
 
@@ -119,7 +103,6 @@
 
     <nx:studioExtraction todir="${outdir}/marketplace">
       <fileset dir="${outdir}/marketplace/install/bundles"/>
-      <fileset dir="${outdir}/marketplace/install/bundles-web-ui"/>
     </nx:studioExtraction>
 
     <zip destfile="${outdir}/${maven.project.artifactId}-${maven.project.version}.zip"
